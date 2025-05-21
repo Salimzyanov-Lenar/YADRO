@@ -3,14 +3,16 @@ from sqlalchemy.ext.declarative import declarative_base
 from src.config import settings
 
 
-engine = create_async_engine(settings.database_url, echo=True)
+engine = create_async_engine(
+    settings.database_url,
+    echo=True
+)
+
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 Base = declarative_base()
 
+
 async def get_db():
-    db = async_session()
-    try:
+    async with async_session() as db:
         yield db
-    finally:
-        db.close()

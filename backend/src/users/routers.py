@@ -20,12 +20,17 @@ async def get_users(
     db: AsyncSession = Depends(get_db),
     ):
 
-    result = await db.execute(
-        select(User).offset(skip).limit(limit)
-    )
+    result = await db.execute(select(User).offset(skip).limit(limit))
     users = result.scalars().all()
 
-    return users
+    total_amount = await db.execute(select(func.count()).select_from(User))
+    has_next = skip + limit < total_amount
+
+    return {
+        "has_next": has_next,
+        "total_amount": total_amount,
+        "users": users,
+    }
 
 
 @router.get('/random/', response_model = UserResponseModel)

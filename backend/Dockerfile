@@ -1,5 +1,5 @@
 # Base Build
-FROM python:3.12-slim as build
+FROM python:3.12-slim AS build
 
 RUN apt-get update && apt-get install -y \
     gcc \

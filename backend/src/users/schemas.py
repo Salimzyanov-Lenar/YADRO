@@ -18,7 +18,7 @@ class UserResponseModel(UserCreateModel):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Scheme for response from randomuser.me
