@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from src.users.routers import router as users_router
@@ -27,3 +28,11 @@ app = FastAPI(
 )
 
 app.include_router(users_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5173", "http://127.0.0.3000"],
+    allow_credentials=True,
+    allow_methods=['GET'],
+    allow_headers=['*'],
+)
