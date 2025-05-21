@@ -1,11 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import delete
 from src.users.models import User
-from src.users.schemas import UserResponseModel, ExternalUser
+from src.users.schemas import ExternalUser, UserCreateModel
 from src.users.fetch_users import fetch_users
 
 
-async def save_user_to_db(user: UserResponseModel, db: AsyncSession):
+async def save_user_to_db(user: UserCreateModel, db: AsyncSession):
     new_user = User(
         gender = user.gender,
         first_name = user.first_name,
@@ -19,11 +19,11 @@ async def save_user_to_db(user: UserResponseModel, db: AsyncSession):
     await db.commit()
 
 
-def transform_user(user: ExternalUser) -> UserResponseModel:
+def transform_user(user: ExternalUser) -> UserCreateModel:
     """
     Transform External User from API for our service
     """
-    return UserResponseModel(
+    return UserCreateModel(
         gender=user.gender,
         first_name=user.name.first,
         second_name=user.name.last,

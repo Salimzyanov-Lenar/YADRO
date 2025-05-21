@@ -4,7 +4,7 @@ from typing import List, Optional, Union
 
 # Scheme for list user for our service
 
-class UserResponseModel(BaseModel):
+class UserCreateModel(BaseModel):
     gender: str
     first_name: str
     second_name: str
@@ -12,6 +12,10 @@ class UserResponseModel(BaseModel):
     email: str
     residing_place: str
     photo_url: str
+
+
+class UserResponseModel(UserCreateModel):
+    id: int
 
     class Config:
         orm_mode = True
