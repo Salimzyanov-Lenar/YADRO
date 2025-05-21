@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     # API URL
     API_URL: str
 
+    WORKERS_AMOUNT: int
+    DEBUG: bool
+
     model_config = SettingsConfigDict(env_file=".env")
 
 

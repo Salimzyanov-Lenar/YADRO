@@ -11,6 +11,7 @@ class UserResponseModel(BaseModel):
     phone_number: str
     email: str
     residing_place: str
+    photo_url: str
 
     class Config:
         orm_mode = True
@@ -81,8 +82,6 @@ class Picture(BaseModel):
 
 
 class ExternalUser(BaseModel):
-    """
-    """
     gender: str
     name: Name
     location: Location

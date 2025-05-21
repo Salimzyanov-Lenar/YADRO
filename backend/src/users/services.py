@@ -13,6 +13,7 @@ async def save_user_to_db(user: UserResponseModel, db: AsyncSession):
         phone_number = user.phone_number,
         email = user.email,
         residing_place = user.residing_place,
+        photo_url = user.photo_url
     )
     db.add(new_user)
     await db.commit()
@@ -26,6 +27,7 @@ def transform_user(user: ExternalUser) -> UserResponseModel:
         phone_number=user.phone,
         email=user.email,
         residing_place=f"{user.location.city}, {user.location.country}",
+        photo_url=user.picture.medium
     )
 
 

@@ -15,4 +15,5 @@ class User(Base):
     phone_number = Column(String, nullable=False)
     email = Column(String, nullable=False)
     residing_place = Column(String,nullable=False)
+    photo_url = Column(String, nullable=False)
 
