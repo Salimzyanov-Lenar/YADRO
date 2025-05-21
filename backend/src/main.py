@@ -22,17 +22,28 @@ async def lifespan(app: FastAPI):
         await delete_all_users(session)
 
 
+docs_url = "/docs" if settings.DEBUG else None
+redoc_url = "/redoc" if settings.DEBUG else None
+openapi_url = "/openapi.json" if settings.DEBUG else None
+
+
 app = FastAPI(
     lifespan=lifespan,
     debug=settings.DEBUG,
+    docs_url=docs_url,
+    redoc_url=redoc_url,
+    openapi_url=openapi_url,
 )
 
-app.include_router(users_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5173", "http://127.0.0.3000"],
+    allow_origins=["http://127.0.0.1:5173", "http://127.0.0.1:3000"],
     allow_credentials=True,
     allow_methods=['GET'],
     allow_headers=['*'],
 )
+
+# "/api/users/v1/.."
+app.include_router(users_router)
+

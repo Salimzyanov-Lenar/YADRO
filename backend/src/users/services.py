@@ -20,6 +20,9 @@ async def save_user_to_db(user: UserResponseModel, db: AsyncSession):
 
 
 def transform_user(user: ExternalUser) -> UserResponseModel:
+    """
+    Transform External User from API for our service
+    """
     return UserResponseModel(
         gender=user.gender,
         first_name=user.name.first,
@@ -46,7 +49,7 @@ async def load_fetched_users_to_db(db: AsyncSession, total_users: int = 1000, ba
 
 async def delete_all_users(session: AsyncSession) -> None:
     """
-    Deleting all users from table users after stoping application
+    Deleting all users from table users after application shutdown
     """
     await session.execute(delete(User))
     await session.commit()
