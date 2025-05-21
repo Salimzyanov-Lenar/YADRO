@@ -8,8 +8,7 @@ async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 Base = declarative_base()
 
-
-def get_db():
+async def get_db():
     db = async_session()
     try:
         yield db

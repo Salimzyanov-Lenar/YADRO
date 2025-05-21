@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+
 from src.users.routers import router as users_router
 from src.database import Base, engine, async_session
 from src.users.services import load_fetched_users_to_db, delete_all_users

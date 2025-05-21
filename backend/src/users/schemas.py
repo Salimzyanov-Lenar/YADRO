@@ -12,6 +12,9 @@ class UserResponseModel(BaseModel):
     email: str
     residing_place: str
 
+    class Config:
+        orm_mode = True
+
 
 # Scheme for response from randomuser.me
 
