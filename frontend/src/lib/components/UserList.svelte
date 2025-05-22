@@ -66,12 +66,7 @@
 </script>
 
 
-<h1 style="text-align: center">Пользователи</h1>
 
-<div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
-    <button onclick={prevPage} disabled={skip === 0}>Назад</button>
-    <button onclick={nextPage} disabled={skip + limit >= totalAmount} >Вперёд</button>
-</div>
 
 <h1 style="text-align: center">Отображать по {limit} пользователей</h1>
 <div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
@@ -81,42 +76,66 @@
     <button onclick={() => changeLimit(100)} >100</button>
 </div>
 
+<div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
+    <a href={`/random/`}><button>Случайный пользователь</button></a>
+</div>
+
+<h1 style="text-align: center">Пользователи</h1>
+
+<div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
+    <button onclick={prevPage} disabled={skip === 0}>Назад</button>
+    <button onclick={nextPage} disabled={skip + limit >= totalAmount} >Вперёд</button>
+</div>
+
 {#if error}
     <p style="color: red;">Ошибка получения данных</p>
 {:else if users.length === 0}
     <p>Загрузка пользователей...</p>
 {:else}
-    <table style="margin-inline: auto;">
-        <thead>
-            <tr>
-                <th>Фото пользователя</th>
-                <th>Пол</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Номер телефона</th>
-                <th>Электронная почта</th>
-                <th>Место проживания</th>
-                <th>Ссылка на пользователя</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each users as user}
+    <div class="table-wrapper">
+        <table>
+            <thead>
                 <tr>
-                    <td><img src="{user.photo_url}" alt="photo" /></td>
-                    <td>{user.gender}</td>
-                    <td>{user.first_name}</td>
-                    <td>{user.second_name}</td>
-                    <td>{user.phone_number}</td>
-                    <td>{user.email}</td>
-                    <td>{user.residing_place}</td>
-                    <td>Ссылка на пользователя</td>
+                    <th>Фото</th>
+                    <th>Пол</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Телефон</th>
+                    <th>Email</th>
+                    <th>Город</th>
+                    <th>Профиль</th>
                 </tr>
-            {/each}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {#each users as user}
+                    <tr>
+                        <td><img src="{user.photo_url}" alt="photo" class="user-photo" /></td>
+                        <td>{user.gender}</td>
+                        <td>{user.first_name}</td>
+                        <td>{user.second_name}</td>
+                        <td>{user.phone_number}</td>
+                        <td>{user.email}</td>
+                        <td>{user.residing_place}</td>
+                        <td><a href={`/` + user.id}><button>Страница</button></a></td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 {/if}
 
+<div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
+    <button onclick={prevPage} disabled={skip === 0}>Назад</button>
+    <button onclick={nextPage}>Вперёд</button>
+</div>
+
+
 <style>
+
+h1 {
+    font-family: 'Inter', sans-serif;
+}
+
 button {
   align-items: center;
   appearance: none;
@@ -169,10 +188,61 @@ button:disabled {
   box-shadow: none;
   transform: none;
 }
-</style>
 
-<div style="margin: 20px; max-width: fit-content; margin-inline: auto;">
-    <button onclick={prevPage} disabled={skip === 0}>Назад</button>
-    <button onclick={nextPage}>Вперёд</button>
-</div>
+.table-wrapper {
+    max-width: 1200px; /* 👈 Ограничивает ширину таблицы */
+    margin: 2rem auto; /* 👈 Центрирует по горизонтали */
+    padding: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+thead {
+    background-color: #f8f9fa;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    font-weight: 600;
+    color: #343a40;
+    background-color: #e9ecef;
+}
+
+tr:hover {
+    background-color: #f1f3f5;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
 
