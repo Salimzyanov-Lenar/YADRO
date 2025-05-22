@@ -13,13 +13,13 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-    async with async_session() as session:
-        await load_fetched_users_to_db(session, total_users=1000) 
+    # async with async_session() as session:
+    #     await load_fetched_users_to_db(session, total_users=1000) 
     
     yield
     
-    async with async_session() as session:
-        await delete_all_users(session)
+    # async with async_session() as session:
+    #     await delete_all_users(session)
 
 
 docs_url = "/docs" if settings.DEBUG else None

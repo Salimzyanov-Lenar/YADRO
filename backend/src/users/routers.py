@@ -46,3 +46,14 @@ async def get_random_user(db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="No users found")
 
     return user
+
+
+@router.get('/{user_id}/', response_model=UserResponseModel)
+async def get_user(user_id: int,db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.id == user_id))
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not Found")
+
+    return user
