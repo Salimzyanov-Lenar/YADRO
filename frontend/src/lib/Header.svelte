@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="container">
-    <h1>Тестовое задание для компании «YADRO»</h1>
+    <h1><i>Тестовое задание для компании «YADRO»</i></h1>
   </div>
 </header>
 
