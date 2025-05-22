@@ -103,3 +103,9 @@ class ExternalUser(BaseModel):
 class ExternalResponse(BaseModel):
     results: List[ExternalUser]
     info: dict
+
+
+class PaginatedUsersResponse(BaseModel):
+    users: List[UserResponseModel]
+    total_amount: int
+    has_next: bool
