@@ -121,6 +121,7 @@
         color: #084298;
     }
 
+    /* BUTTON STYLES */
     button {
         align-items: center;
         appearance: none;

@@ -9,6 +9,7 @@
         font-family: 'Inter', sans-serif;
     }
 
+    /* HEADER STYLES */
     .header {
         background-color: rgba(32, 29, 212, 0.8); /* чёрный с прозрачностью */
         color: white;

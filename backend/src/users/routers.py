@@ -41,10 +41,6 @@ async def get_random_user(db: AsyncSession = Depends(get_db)):
         select(User).order_by(func.random()).limit(1)
     )
     user = result.scalars().first()
-    
-    if not user:
-        raise HTTPException(status_code=404, detail="No users found")
-
     return user
 
 

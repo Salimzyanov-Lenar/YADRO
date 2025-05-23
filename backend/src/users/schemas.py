@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional, Union
 
 
@@ -17,8 +17,7 @@ class UserCreateModel(BaseModel):
 class UserResponseModel(UserCreateModel):
     id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Scheme for response from randomuser.me
