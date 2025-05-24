@@ -30,7 +30,8 @@ WORKERS_AMOUNT=4
 <h3>Frontend (Svelte)</h3>
 <p>Перейдите в директорию frontend и выполните:</p>
 
-<pre><code>npm run build
+<pre><code>npm install
+npm run build
 npm run preview</code></pre>
 
 <p>После этого приложение будет доступно по адресу <code>http://localhost:4173</code></p>
