@@ -11,8 +11,8 @@
 DB_NAME=yadro_db
 DB_USER=yadro_user
 DB_PASSWORD=yadro_secret
-#DB_HOST=postgres
-DB_HOST=localhost
+DB_HOST=postgres
+#DB_HOST=localhost
 DB_PORT=5432
 
 DEBUG=False
