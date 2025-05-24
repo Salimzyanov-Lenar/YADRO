@@ -16,7 +16,6 @@
 
      async function loadUser() {
         try {
-            // users = await fetchUsers(limit, skip);
             const response = await fetch(`/api/users/v1/random`);
             if (!response.ok) {
                 throw new Error("Ошибка при загрузке пользователей");
