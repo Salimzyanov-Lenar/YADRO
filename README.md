@@ -6,7 +6,24 @@
 
 <p>Для начала склонируйте репозиторий</p>
 
+<p>Не забудьте добавить файл .env можете просто скопировать в директорию backend/ файлик ниже</p>
+<pre><code>
+DB_NAME=yadro_db
+DB_USER=yadro_user
+DB_PASSWORD=yadro_secret
+#DB_HOST=postgres
+DB_HOST=localhost
+DB_PORT=5432
+
+DEBUG=False
+
+API_URL="https://randomuser.me/api/"
+
+WORKERS_AMOUNT=4
+</code></pre>
+
 <p>Перейдите в директорию backend. Для запуска серверной части используйте Docker Compose:</p>
+<p>После чего запустите команды ниже</p>
 
 <pre><code>docker compose -f docker-compose.base.yml -f docker-compose.dev.yml up --build</code></pre>
 
